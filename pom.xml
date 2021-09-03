@@ -4,13 +4,33 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>com.minacloud</groupId>
     <artifactId>minacloud-common</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <github.global.server>github</github.global.server>
     </properties>
 
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+            </plugin>
+
+        </plugins>
+
+    </build>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub MinaCloud Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/minacloud/minacloud-common</url>
+        </repository>
+    </distributionManagement>
 </project>

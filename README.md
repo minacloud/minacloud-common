@@ -1,3 +1,3 @@
-# minacloud-server
+# minacloud-common
 
-minacloud 服务端
+minacloud 通用类
