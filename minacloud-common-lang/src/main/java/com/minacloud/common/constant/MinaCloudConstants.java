@@ -3,6 +3,19 @@ package com.minacloud.common.constant;
 import java.time.format.DateTimeFormatter;
 
 public interface MinaCloudConstants {
+
+    /**
+     * BUFFER_SIZE
+     */
+    int BUFFER_SIZE = 1024;
+    /**
+     * CONTENT_TYPE_FORM_URLENCODED
+     */
+    String CONTENT_TYPE_FORM_URLENCODED = "application/x-www-form-urlencoded";
+    /**
+     * CONTENT_TYPE_JSON
+     */
+    String CONTENT_TYPE_JSON = "application/json";
     /**
      * Constant <code>DATE_YYYY_MM_DD="yyyy-MM-dd"</code>
      */

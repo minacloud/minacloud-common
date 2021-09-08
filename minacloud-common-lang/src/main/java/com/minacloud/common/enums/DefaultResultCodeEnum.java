@@ -51,6 +51,6 @@ public enum DefaultResultCodeEnum implements ResultCode {
     }
 
     public static DefaultResultCodeEnum getByResultCode(String resultCode) {
-        return Arrays.stream(DefaultResultCodeEnum.values()).filter(v -> Objects.equals(v.getResultCode(), resultCode)).findFirst().orElse(null);
+        return Arrays.stream(DefaultResultCodeEnum.values()).filter(v -> Objects.equals(v.getResultCode(), resultCode)).findFirst().orElse(UNKNOWN);
     }
 }

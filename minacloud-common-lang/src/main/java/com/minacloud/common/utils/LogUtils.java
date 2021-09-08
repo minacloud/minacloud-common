@@ -75,6 +75,7 @@ public class LogUtils {
         if (objs != null) {
             for (Object o : objs) {
                 log.append(o);
+                log.append(SEP);
             }
         }
         return log.toString();
