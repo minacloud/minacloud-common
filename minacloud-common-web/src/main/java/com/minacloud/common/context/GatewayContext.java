@@ -28,6 +28,7 @@ public class GatewayContext {
     private Map<String, String> requestHeaderMap = new HashMap<>();
     private Map<String, String> responseHeaderMap = new HashMap<>();
     private String responseBody;
+    private String requestBody;
     private MinaCloudBusinessException businessException;
 
 }

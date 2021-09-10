@@ -7,6 +7,7 @@ import com.minacloud.common.constant.MinaCloudConstants;
 import com.minacloud.common.context.GatewayContext;
 import com.minacloud.common.utils.LogUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,6 +45,8 @@ public class HttpToolUtils {
                     response.addHeader(k, v);
                 }
             });
+            response.setStatus(HttpStatus.OK.value());
+            response.addHeader(MinaCloudConstants.CONTENT_TYPE_HEADER, MinaCloudConstants.CONTENT_TYPE_JSON_UTF8);
             response.getWriter().write(context.getResponseBody());
         } catch (Exception e) {
 
