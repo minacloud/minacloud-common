@@ -3,7 +3,7 @@ package com.minacloud.common.template;
 
 import com.minacloud.common.result.ResultCode;
 
-public interface ServiceCallback<T> {
+public interface ServiceCallback<R> {
 
     /**
      * check the input parameters
@@ -15,7 +15,7 @@ public interface ServiceCallback<T> {
      *
      * @return business result
      */
-    T process();
+    R process();
 
     /**
      * build fail result
@@ -24,7 +24,8 @@ public interface ServiceCallback<T> {
      * @param errorMsg   error msg
      * @return T error result
      */
-    T buildFailureResult(ResultCode resultCode, String errorMsg);
+    R buildFailureResult(ResultCode resultCode, String errorMsg);
 
-    void buildSuccessResult(T response);
+    void buildSuccessResult(R response);
+
 }

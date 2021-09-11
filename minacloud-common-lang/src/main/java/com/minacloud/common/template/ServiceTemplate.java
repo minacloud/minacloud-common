@@ -1,10 +1,11 @@
 package com.minacloud.common.template;
 
 import com.minacloud.common.base.BaseResponse;
+import com.minacloud.common.enums.DefaultResultCodeEnum;
 import com.minacloud.common.exception.MinaCloudBusinessException;
 import com.minacloud.common.exception.MinaCloudParamIllegalException;
-import com.minacloud.common.enums.DefaultResultCodeEnum;
 import com.minacloud.common.result.ResultCode;
+import com.minacloud.common.utils.JsonUtil;
 import com.minacloud.common.utils.LogUtils;
 import com.minacloud.common.utils.ValidatorUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +23,9 @@ public class ServiceTemplate {
      * @param scenario business scenario event code
      * @param callback member callback template
      */
-    public static <U, T> T execute(U request, String scenario, ServiceCallback<T> callback) {
+    public static <P, R> R execute(P request, String scenario, ServiceCallback< R> callback) {
 
-        T response = null;
+        R response = null;
         try {
             // print invocation request log
             pointInvocationRequestLog(scenario, request);
@@ -59,14 +60,14 @@ public class ServiceTemplate {
      * print invocation request log
      */
     private static void pointInvocationRequestLog(String scenario, Object args) {
-        LogUtils.info(log, scenario, " invoke params:", args);
+        LogUtils.info(log, scenario, " invoke params:", JsonUtil.toJsonString(args));
     }
 
     /**
      * print invocation response log
      */
     private static <R, T> void pointInvocationResponseLog(String scenario, BaseResponse result) {
-        LogUtils.info(log, scenario, " invoke result:", result);
+        LogUtils.info(log, scenario, " invoke result:", JsonUtil.toJsonString(result));
 
     }
 

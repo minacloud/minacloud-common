@@ -11,11 +11,14 @@ public interface MinaCloudConstants {
     /**
      * CONTENT_TYPE_FORM_URLENCODED
      */
+    String CONTENT_TYPE_HEADER = "content-type";
     String CONTENT_TYPE_FORM_URLENCODED = "application/x-www-form-urlencoded";
+    String CONTENT_TYPE_FORM_URLENCODED_UTF8 = "application/x-www-form-urlencoded; charset=utf-8";
     /**
      * CONTENT_TYPE_JSON
      */
     String CONTENT_TYPE_JSON = "application/json";
+    String CONTENT_TYPE_JSON_UTF8 = "application/json; charset=utf-8";
     /**
      * Constant <code>DATE_YYYY_MM_DD="yyyy-MM-dd"</code>
      */

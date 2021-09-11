@@ -33,6 +33,10 @@ public enum DefaultResultCodeEnum implements ResultCode {
      */
     METHOD_NOT_SUPPORTED(ResultStatusEnum.FAIL, "Method Not Supported"),
     /**
+     * Server Error
+     */
+    SERVER_ERROR(ResultStatusEnum.FAIL, "Server Error"),
+    /**
      * Unknown
      */
     UNKNOWN(ResultStatusEnum.UNKNOWN, "Unknown");

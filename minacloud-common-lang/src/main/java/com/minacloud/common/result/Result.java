@@ -28,6 +28,14 @@ public class Result implements ResultCode {
         return result;
     }
 
+    public static Result of(ResultCode resultCode, String resultMessage) {
+        Result result = new Result();
+        result.setResultCode(resultCode.getResultCode());
+        result.setResultStatus(resultCode.getResultStatus());
+        result.setResultMessage(resultMessage);
+        return result;
+    }
+
     public static Result of(String resultCode) {
         Result result = new Result();
         DefaultResultCodeEnum byResultCode = DefaultResultCodeEnum.getByResultCode(resultCode);
