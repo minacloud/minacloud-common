@@ -14,6 +14,9 @@ import javax.validation.ConstraintViolation;
 import java.util.Locale;
 import java.util.Set;
 
+/**
+ * ServiceTemplate
+ */
 @Slf4j
 public class ServiceTemplate {
     /**
