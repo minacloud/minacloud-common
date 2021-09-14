@@ -23,6 +23,7 @@ package com.minacloud.common.base;
 import com.minacloud.common.utils.ValidatorUtils;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
@@ -35,6 +36,7 @@ import java.util.Date;
 @Setter
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
 @Accessors(chain = true)
 public abstract class BaseEntity<PK> {
     /**
