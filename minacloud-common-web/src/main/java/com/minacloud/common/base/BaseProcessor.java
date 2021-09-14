@@ -8,7 +8,7 @@ public abstract class BaseProcessor<P extends BaseRequest, R extends BaseRespons
 
     public abstract void checkParameter(P request);
 
-    public abstract P process(R request);
+    public abstract R process(P request);
 
     public P convert(Object request) {
         Class<P> rawType = (Class<P>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];

@@ -2,9 +2,11 @@ package com.minacloud.common.handler;
 
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.IdUtil;
+import com.google.gson.JsonObject;
 import com.minacloud.common.base.BaseProcessor;
 import com.minacloud.common.base.BaseRequest;
 import com.minacloud.common.base.BaseResponse;
+import com.minacloud.common.constant.MinaCloudConstants;
 import com.minacloud.common.context.GatewayContext;
 import com.minacloud.common.context.GatewayContextHolder;
 import com.minacloud.common.enums.DefaultResultCodeEnum;
@@ -21,9 +23,12 @@ import com.minacloud.common.utils.TracerUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import static com.minacloud.common.enums.DefaultResultCodeEnum.SUCCESS;
 
 @Slf4j
 @Component
@@ -59,25 +64,26 @@ public class HttpProcessHandler {
                 throw new MinaCloudBusinessException(DefaultResultCodeEnum.RES_NOT_FOUND, "Action Not Found");
             }
             BaseResponse baseResponse = ServiceTemplate.execute(context, action, new ServiceCallback<BaseResponse>() {
+                BaseRequest request = processor.convert(context.getRequestBody());
+
                 @Override
                 public void checkParameter() {
-                    BaseRequest convert = processor.convert(context.getRequestBody());
-                    processor.checkParameter(convert);
+                    processor.checkParameter(request);
                 }
 
                 @Override
                 public BaseResponse process() {
-                    return null;
+                    return processor.process(request);
                 }
 
                 @Override
                 public BaseResponse buildFailureResult(ResultCode resultCode, String errorMsg) {
-                    return null;
+                    throw new MinaCloudBusinessException(resultCode, errorMsg);
                 }
 
                 @Override
                 public void buildSuccessResult(BaseResponse response) {
-
+                    response.setResult(Result.of(SUCCESS));
                 }
             });
             context.setResponseBody(JsonUtil.toJsonString(baseResponse));
@@ -100,7 +106,12 @@ public class HttpProcessHandler {
     private void handException(GatewayContext context) {
         LogUtils.error(log, "http process error");
         MinaCloudBusinessException businessException = context.getBusinessException();
+        String message = businessException.getMessage();
         Result error = Result.of(businessException.getErrorCode());
-        context.setResponseBody(JsonUtil.toJsonString(error));
+        if (!ObjectUtils.isEmpty(message)) {
+            error = Result.of(businessException.getErrorCode(), message);
+        }
+        JsonObject result = JsonUtil.toJsonObject(MinaCloudConstants.RESULT_KEY, error);
+        context.setResponseBody(JsonUtil.toJsonString(result));
     }
 }

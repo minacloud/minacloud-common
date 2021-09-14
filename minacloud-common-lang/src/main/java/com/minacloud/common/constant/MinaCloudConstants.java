@@ -3,6 +3,7 @@ package com.minacloud.common.constant;
 import java.time.format.DateTimeFormatter;
 
 public interface MinaCloudConstants {
+    String RESULT_KEY = "result";
 
     /**
      * BUFFER_SIZE
