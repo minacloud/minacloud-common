@@ -20,7 +20,7 @@ package com.minacloud.common.processor;
  * #L%
  */
 
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -30,7 +30,7 @@ import static java.lang.annotation.ElementType.TYPE;
 
 @Target({TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Component
+@RestController
 public @interface Processor {
 
     String value();
