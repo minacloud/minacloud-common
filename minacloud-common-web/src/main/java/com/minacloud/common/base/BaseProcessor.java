@@ -20,11 +20,13 @@ package com.minacloud.common.base;
  * #L%
  */
 
+import com.alibaba.cola.dto.Command;
+import com.alibaba.cola.dto.Response;
 import com.minacloud.common.utils.JsonUtil;
 
 import java.lang.reflect.ParameterizedType;
 
-public abstract class BaseProcessor<P extends BaseRequest, R extends BaseResponse> {
+public abstract class BaseProcessor<P extends Command, R extends Response> {
 
     public abstract void checkParameter(P request);
 

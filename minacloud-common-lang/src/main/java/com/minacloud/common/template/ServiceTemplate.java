@@ -20,7 +20,7 @@ package com.minacloud.common.template;
  * #L%
  */
 
-import com.minacloud.common.base.BaseResponse;
+import com.alibaba.cola.dto.Response;
 import com.minacloud.common.enums.DefaultResultCodeEnum;
 import com.minacloud.common.exception.MinaCloudBusinessException;
 import com.minacloud.common.exception.MinaCloudParamIllegalException;
@@ -71,9 +71,9 @@ public class ServiceTemplate {
             response = callback.buildFailureResult(DefaultResultCodeEnum.UNKNOWN, e.getMessage());
 
         } finally {
-            if (response instanceof BaseResponse) {
+            if (response instanceof Response) {
                 // print biz log
-                pointInvocationResponseLog(scenario, (BaseResponse) response);
+                pointInvocationResponseLog(scenario, (Response) response);
             }
         }
         return response;
@@ -89,7 +89,7 @@ public class ServiceTemplate {
     /**
      * print invocation response log
      */
-    private static <R, T> void pointInvocationResponseLog(String scenario, BaseResponse result) {
+    private static <R, T> void pointInvocationResponseLog(String scenario, Response result) {
         LogUtils.info(log, scenario, " invoke result:", JsonUtil.toJsonString(result));
 
     }
