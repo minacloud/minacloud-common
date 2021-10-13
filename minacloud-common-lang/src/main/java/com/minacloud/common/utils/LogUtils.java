@@ -22,6 +22,7 @@ package com.minacloud.common.utils;
 
 
 import com.minacloud.common.constant.MinaCloudConstants;
+import com.minacloud.common.tracer.TracerUtil;
 import org.slf4j.Logger;
 
 import java.time.LocalDateTime;
@@ -106,7 +107,7 @@ public class LogUtils {
     }
 
     private static String fetchTraceId() {
-        String traceId = TracerUtils.getTraceId();
+        String traceId = TracerUtil.getTracerId();
         if (Objects.isNull(traceId) || Objects.equals(traceId, "")) {
             traceId = String.valueOf(Thread.currentThread().getId());
         }

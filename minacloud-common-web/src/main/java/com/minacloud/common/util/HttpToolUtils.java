@@ -24,7 +24,7 @@ import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.StrUtil;
 import com.minacloud.common.constant.MinaCloudConstants;
-import com.minacloud.common.context.GatewayContext;
+import com.minacloud.common.context.WebRuntimeContext;
 import com.minacloud.common.utils.LogUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -57,7 +57,7 @@ public class HttpToolUtils {
         }
     }
 
-    public static void assembleResponse(HttpServletResponse response, GatewayContext context) {
+    public static void assembleResponse(HttpServletResponse response, WebRuntimeContext context) {
         Map<String, String> headMap = context.getResponseHeaderMap();
         try {
             headMap.forEach((k, v) -> {

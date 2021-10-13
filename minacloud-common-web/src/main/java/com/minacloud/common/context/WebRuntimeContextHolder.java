@@ -20,20 +20,20 @@ package com.minacloud.common.context;
  * #L%
  */
 
-public class GatewayContextHolder {
-    private static final ThreadLocal<GatewayContext> GATEWAY_CONTEXT_THREAD_LOCAL = new ThreadLocal<>();
+public class WebRuntimeContextHolder {
+    private static final ThreadLocal<WebRuntimeContext> WEB_CONTEXT_THREAD_LOCAL = new ThreadLocal<>();
 
-    public static GatewayContext createGatewayContext() {
-        GatewayContext context = new GatewayContext();
-        GATEWAY_CONTEXT_THREAD_LOCAL.set(context);
+    public static WebRuntimeContext createWebRuntimeContext() {
+        WebRuntimeContext context = new WebRuntimeContext();
+        WEB_CONTEXT_THREAD_LOCAL.set(context);
         return context;
     }
 
-    public static GatewayContext getGatewayContext() {
-        return GATEWAY_CONTEXT_THREAD_LOCAL.get();
+    public static WebRuntimeContext getWebRuntimeContext() {
+        return WEB_CONTEXT_THREAD_LOCAL.get();
     }
 
-    public static void cleanGatewayContext() {
-        GATEWAY_CONTEXT_THREAD_LOCAL.remove();
+    public static void cleanWebRuntimeContext() {
+        WEB_CONTEXT_THREAD_LOCAL.remove();
     }
 }

@@ -28,6 +28,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -35,11 +36,13 @@ import java.util.Map;
 @ToString
 @EqualsAndHashCode
 @Accessors(chain = true)
-public class GatewayContext {
+public class WebRuntimeContext {
     private String traceId;
     private String requestUri;
     private String requestUrl;
-    private String requestMethod;
+    private String method;
+    private String requesterClientId;
+    private String integratorClientId;
     private String contextPath;
     private String servletPath;
     private int serverPort;
@@ -49,6 +52,10 @@ public class GatewayContext {
     private Map<String, String> responseHeaderMap = new HashMap<>();
     private String responseBody;
     private String requestBody;
+    private String version;
+    private String appId;
     private MinaCloudBusinessException businessException;
+
+    private List<FileRequestWrapper> files;
 
 }

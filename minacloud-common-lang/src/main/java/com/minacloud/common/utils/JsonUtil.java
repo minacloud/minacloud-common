@@ -21,6 +21,7 @@ package com.minacloud.common.utils;
  */
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -29,19 +30,29 @@ import java.util.List;
 import java.util.Map;
 
 public class JsonUtil {
-    private static final Gson gson = new Gson();
+    private JsonUtil() {
+    }
+
+    private static final Gson GSON;
+
+    static {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.serializeNulls()
+                .setDateFormat("yyyy-MM-dd HH:mm:ss");
+        GSON = gsonBuilder.create();
+    }
 
     public static String toJsonString(Object object) {
-        return gson.toJson(object);
+        return GSON.toJson(object);
     }
 
     public static JsonObject toJsonObject(Object object) {
-        JsonElement jsonElement = gson.toJsonTree(object);
+        JsonElement jsonElement = GSON.toJsonTree(object);
         return jsonElement.getAsJsonObject();
     }
 
     public static JsonElement toJsonElement(Object object) {
-        return gson.toJsonTree(object);
+        return GSON.toJsonTree(object);
     }
 
     public static void addProperty(JsonObject object, String key, Object value) {
@@ -95,18 +106,18 @@ public class JsonUtil {
     }
 
     public static <T> T parseObject(String json, Class<T> clzz) {
-        return gson.fromJson(json, clzz);
+        return GSON.fromJson(json, clzz);
     }
 
     public static <T> T parseObject(Reader json, Class<T> clzz) {
-        return gson.fromJson(json, clzz);
+        return GSON.fromJson(json, clzz);
     }
 
     public static <T> List<T> parseArray(String json, Class<List<T>> clzz) {
-        return gson.fromJson(json, clzz);
+        return GSON.fromJson(json, clzz);
     }
 
     public static <T> List<T> parseArray(Reader json, Class<List<T>> clzz) {
-        return gson.fromJson(json, clzz);
+        return GSON.fromJson(json, clzz);
     }
 }
